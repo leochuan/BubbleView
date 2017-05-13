@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="bubbleView">
+        <attr name="borderColor" format="color" />
+        <attr name="bgColor" format="color" />
+        <attr name="offset" format="dimension" />
+        <attr name="borderWidth" format="dimension" />
+        <attr name="radius" format="dimension" />
+        <attr name="orientation" format="enum">
+            <enum name="left" value="0" />
+            <enum name="right" value="1" />
+            <enum name="top" value="2" />
+            <enum name="bottom" value="3" />
+        </attr>
+        <attr name="triangleWidth" format="dimension" />
+        <attr name="triangleHeight" format="dimension" />
+        <attr name="clip" format="boolean" />
+    </declare-styleable>
+</resources>
