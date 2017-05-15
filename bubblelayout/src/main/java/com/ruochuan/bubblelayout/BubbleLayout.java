@@ -39,7 +39,7 @@ public class BubbleLayout extends ViewGroup {
     private int backgroundColor;
     private int borderColor;
     private boolean clipToRadius;
-    private boolean centerArrow = true;
+    private boolean centerArrow;
 
     public BubbleLayout(Context context) {
         this(context, null);

@@ -63,7 +63,6 @@ public final class BubbleDrawable extends Drawable {
         bitmap = builder.bitmap;
         borderWidth = builder.borderWidth;
         centerArrow = builder.centerArrow;
-        centerArrow = true;
 
         borderPaint.setStyle(Paint.Style.STROKE);
         borderPaint.setStrokeCap(Paint.Cap.ROUND);

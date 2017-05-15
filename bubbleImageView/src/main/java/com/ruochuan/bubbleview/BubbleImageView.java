@@ -64,6 +64,7 @@ public class BubbleImageView extends ImageView {
         triangleHeight = (int) typedArray.getDimension(R.styleable.bubbleView_triangleHeight, triangleHeight);
         borderColor = typedArray.getColor(R.styleable.bubbleView_borderColor, borderColor);
         borderWidth = typedArray.getDimension(R.styleable.bubbleView_borderWidth, 0);
+        centerArrow = typedArray.getBoolean(R.styleable.bubbleView_centerArrow, centerArrow);
         if (borderWidth != 0) {
             borderWidth = borderWidth / getResources().getDisplayMetrics().density;
         }
@@ -223,6 +224,7 @@ public class BubbleImageView extends ImageView {
                 .setBorderWidth(borderWidth)
                 .setTriangleWidth(triangleWidth)
                 .setTriangleHeight(triangleHeight)
+                .setCenterArrow(centerArrow)
                 .build();
     }
 
