@@ -1,4 +1,4 @@
-package com.ruochuan.bubbleview;
+package com.ruochuan;
 
 import android.content.Context;
 import android.view.Display;

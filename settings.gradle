@@ -1,1 +1,1 @@
-include ':app', ':bubbleImageView'
+include ':app', ':bubbleImageView', ':bubblelayout'
