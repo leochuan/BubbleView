@@ -38,7 +38,7 @@ public class BubbleLayout extends ViewGroup {
     private RectF leftTopRadiusRect, rightTopRadiusRect, leftBottomRadiusRect, rightBottomRadiusRect;
     private int backgroundColor;
     private int borderColor;
-    private boolean clip;
+    private boolean clipToRadius;
 
     public BubbleLayout(Context context) {
         this(context, null);
@@ -63,7 +63,6 @@ public class BubbleLayout extends ViewGroup {
         triangleWidth = DensityUtils.dip2px(context, 12);
         triangleHeight = DensityUtils.dip2px(context, 8);
         offset = DensityUtils.dip2px(context, 8);
-        clip = true;
 
         if (attrs == null) return;
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.bubbleView);
@@ -75,7 +74,7 @@ public class BubbleLayout extends ViewGroup {
         orientation = typedArray.getInt(R.styleable.bubbleView_orientation, orientation);
         triangleWidth = (int) typedArray.getDimension(R.styleable.bubbleView_triangleWidth, triangleWidth);
         triangleHeight = (int) typedArray.getDimension(R.styleable.bubbleView_triangleHeight, triangleHeight);
-        clip = typedArray.getBoolean(R.styleable.bubbleView_clip, clip);
+        clipToRadius = typedArray.getBoolean(R.styleable.bubbleView_clipToRadius, clipToRadius);
         typedArray.recycle();
     }
 
@@ -128,7 +127,7 @@ public class BubbleLayout extends ViewGroup {
 
         int reservedWidth = Math.round(borderPaintSize * 2);
         int reservedHeight = Math.round(borderPaintSize * 2);
-        if (clip) {
+        if (!clipToRadius) {
             reservedHeight += radius * 2;
             reservedWidth += radius * 2;
         }
@@ -155,7 +154,7 @@ public class BubbleLayout extends ViewGroup {
                 maxWidth += Math.round(triangleHeight + borderPaintSize * 2);
                 maxHeight = maxHeight > triangleWidth + offset ? maxHeight : triangleWidth + offset;
                 maxHeight += Math.round(borderPaintSize * 2);
-                if (clip) {
+                if (!clipToRadius) {
                     maxHeight += radius * 2;
                     maxWidth += radius * 2;
                 } else {
@@ -189,7 +188,7 @@ public class BubbleLayout extends ViewGroup {
                 maxHeight += Math.round(triangleHeight + borderPaintSize * 2);
                 maxWidth = maxWidth > triangleWidth + offset ? maxWidth : triangleWidth + offset;
                 maxWidth += Math.round(borderPaintSize * 2);
-                if (clip) {
+                if (clipToRadius) {
                     maxHeight += radius * 2;
                     maxWidth += radius * 2;
                 } else {
@@ -229,7 +228,7 @@ public class BubbleLayout extends ViewGroup {
                     default:
                         break;
                 }
-                if (clip) {
+                if (!clipToRadius) {
                     childLeft += radius;
                     childTop += radius;
                 }
@@ -327,8 +326,8 @@ public class BubbleLayout extends ViewGroup {
         return borderColor;
     }
 
-    public boolean isClip() {
-        return clip;
+    public boolean isClipToRadius() {
+        return clipToRadius;
     }
 
     private void configureRadiusRect() {

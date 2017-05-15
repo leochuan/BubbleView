@@ -14,6 +14,6 @@
         </attr>
         <attr name="triangleWidth" format="dimension" />
         <attr name="triangleHeight" format="dimension" />
-        <attr name="clip" format="boolean" />
+        <attr name="clipToRadius" format="boolean" />
     </declare-styleable>
 </resources>
