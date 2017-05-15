@@ -1,4 +1,4 @@
-package com.ruochuan;
+package com.ruochuan.bubblelayout;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -366,13 +366,8 @@ public class BubbleLayout extends ViewGroup {
     }
 
     @Override
-    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-        super.onSizeChanged(w, h, oldw, oldh);
-        if (w > 0 || h > 0) configureRadiusRect();
-    }
-
-    @Override
     protected void onDraw(Canvas canvas) {
+        configureRadiusRect();
         setUpPath();
         canvas.drawPath(path, backgroundPaint);
         if (borderWidth > 0) canvas.drawPath(path, borderPaint);
@@ -403,13 +398,13 @@ public class BubbleLayout extends ViewGroup {
 
     private void centerXOffset() {
         if (centerArrow) {
-            offset = Math.round(getWidth() / 2f - radius - triangleHeight / 2f);
+            offset = Math.round(getWidth() / 2f - radius - triangleWidth / 2f - borderPaintSize / 2f);
         }
     }
 
     private void centerYOffset() {
         if (centerArrow)
-            offset = Math.round(getHeight() / 2f - radius - triangleWidth / 2f);
+            offset = Math.round(getHeight() / 2f - radius - triangleWidth / 2f - borderPaintSize / 2f);
     }
 
     private void generatorLefPath() {

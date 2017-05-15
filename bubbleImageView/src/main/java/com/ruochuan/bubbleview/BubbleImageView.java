@@ -28,6 +28,7 @@ public class BubbleImageView extends ImageView {
     private int orientation;
     private float borderWidth;
     private int borderColor;
+    private boolean centerArrow;
     private BubbleDrawable bubbleDrawable;
     private Bitmap bitmap;
     private boolean preSetUp = true;
@@ -172,6 +173,12 @@ public class BubbleImageView extends ImageView {
         invalidate();
     }
 
+    public void setCenterArrow(boolean centerArrow) {
+        this.centerArrow = centerArrow;
+        if (bubbleDrawable != null) bubbleDrawable.setCenterArrow(centerArrow);
+        invalidate();
+    }
+
     public float getBorderWidth() {
         return borderWidth;
     }
@@ -198,6 +205,10 @@ public class BubbleImageView extends ImageView {
 
     public int getOrientation() {
         return orientation;
+    }
+
+    public boolean isCenterArrow() {
+        return centerArrow;
     }
 
     private void setUp() {

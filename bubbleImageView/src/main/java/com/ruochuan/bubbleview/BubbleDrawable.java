@@ -39,8 +39,9 @@ public final class BubbleDrawable extends Drawable {
     private int radius;
     private int orientation;
     private float borderWidth;
-
+    private boolean centerArrow;
     private Bitmap bitmap;
+
     private RectF leftTopRadiusRect, rightTopRadiusRect, leftBottomRadiusRect, rightBottomRadiusRect;
     private Rect mDstRect = new Rect();
     private Path path = new Path();
@@ -61,6 +62,8 @@ public final class BubbleDrawable extends Drawable {
         orientation = builder.orientation;
         bitmap = builder.bitmap;
         borderWidth = builder.borderWidth;
+        centerArrow = builder.centerArrow;
+        centerArrow = true;
 
         borderPaint.setStyle(Paint.Style.STROKE);
         borderPaint.setStrokeCap(Paint.Cap.ROUND);
@@ -216,6 +219,10 @@ public final class BubbleDrawable extends Drawable {
         this.borderWidth = width;
     }
 
+    /* Package */ void setCenterArrow(boolean centerArrow) {
+        this.centerArrow = centerArrow;
+    }
+
     public int getBorderColor() {
         return borderPaint.getColor();
     }
@@ -238,6 +245,10 @@ public final class BubbleDrawable extends Drawable {
 
     public int getRadius() {
         return radius;
+    }
+
+    public boolean isCenterArrow() {
+        return centerArrow;
     }
 
     @Override
@@ -265,18 +276,33 @@ public final class BubbleDrawable extends Drawable {
 
         switch (orientation) {
             case LEFT:
+                centerYOffset();
                 generatorLefPath();
                 break;
             case RIGHT:
+                centerYOffset();
                 generatorRightPath();
                 break;
             case TOP:
+                centerXOffset();
                 generatorTopPath();
                 break;
             case BOTTOM:
+                centerXOffset();
                 generatorBottomPath();
                 break;
         }
+    }
+
+    private void centerXOffset() {
+        if (centerArrow) {
+            offset = Math.round((mDstRect.width() - offsetLeft - offsetRight) / scale / 2f - radius - triangleWidth / 2f - borderWidth / 2f);
+        }
+    }
+
+    private void centerYOffset() {
+        if (centerArrow)
+            offset = Math.round((mDstRect.height() - offsetTop - offsetBottom) / scale / 2f - radius - triangleWidth / 2f - borderWidth / 2f);
     }
 
     private void generatorLefPath() {
@@ -364,6 +390,7 @@ public final class BubbleDrawable extends Drawable {
         private int borderColor;
         private float borderWidth;
         private Bitmap bitmap;
+        private boolean centerArrow;
 
         public Builder setTriangleHeight(int triangleHeight) {
             this.triangleHeight = triangleHeight;
@@ -402,6 +429,11 @@ public final class BubbleDrawable extends Drawable {
 
         public Builder setBorderWidth(float borderWidth) {
             this.borderWidth = borderWidth;
+            return this;
+        }
+
+        public Builder setCenterArrow(boolean centerArrow) {
+            this.centerArrow = centerArrow;
             return this;
         }
 
