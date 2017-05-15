@@ -39,6 +39,7 @@ public class BubbleLayout extends ViewGroup {
     private int backgroundColor;
     private int borderColor;
     private boolean clipToRadius;
+    private boolean centerArrow = true;
 
     public BubbleLayout(Context context) {
         this(context, null);
@@ -75,6 +76,7 @@ public class BubbleLayout extends ViewGroup {
         triangleWidth = (int) typedArray.getDimension(R.styleable.bubbleView_triangleWidth, triangleWidth);
         triangleHeight = (int) typedArray.getDimension(R.styleable.bubbleView_triangleHeight, triangleHeight);
         clipToRadius = typedArray.getBoolean(R.styleable.bubbleView_clipToRadius, clipToRadius);
+        centerArrow = typedArray.getBoolean(R.styleable.bubbleView_centerArrow, centerArrow);
         typedArray.recycle();
     }
 
@@ -188,7 +190,7 @@ public class BubbleLayout extends ViewGroup {
                 maxHeight += Math.round(triangleHeight + borderPaintSize * 2);
                 maxWidth = maxWidth > triangleWidth + offset ? maxWidth : triangleWidth + offset;
                 maxWidth += Math.round(borderPaintSize * 2);
-                if (clipToRadius) {
+                if (!clipToRadius) {
                     maxHeight += radius * 2;
                     maxWidth += radius * 2;
                 } else {
@@ -242,6 +244,10 @@ public class BubbleLayout extends ViewGroup {
                 child.layout(childLeft, childTop, childLeft + width, childTop + height);
             }
         }
+    }
+
+    public void setCenterArrow(boolean centerArrow) {
+        this.centerArrow = centerArrow;
     }
 
     public void setBorderColor(int borderColor) {
@@ -322,6 +328,10 @@ public class BubbleLayout extends ViewGroup {
         return backgroundColor;
     }
 
+    public boolean isCenterArrow() {
+        return centerArrow;
+    }
+
     public int getBorderColor() {
         return borderColor;
     }
@@ -373,18 +383,33 @@ public class BubbleLayout extends ViewGroup {
 
         switch (orientation) {
             case LEFT:
+                centerYOffset();
                 generatorLefPath();
                 break;
             case RIGHT:
+                centerYOffset();
                 generatorRightPath();
                 break;
             case TOP:
+                centerXOffset();
                 generatorTopPath();
                 break;
             case BOTTOM:
+                centerXOffset();
                 generatorBottomPath();
                 break;
         }
+    }
+
+    private void centerXOffset() {
+        if (centerArrow) {
+            offset = Math.round(getWidth() / 2f - radius - triangleHeight / 2f);
+        }
+    }
+
+    private void centerYOffset() {
+        if (centerArrow)
+            offset = Math.round(getHeight() / 2f - radius - triangleWidth / 2f);
     }
 
     private void generatorLefPath() {

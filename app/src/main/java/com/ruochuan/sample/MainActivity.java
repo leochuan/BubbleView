@@ -1,10 +1,9 @@
 package com.ruochuan.sample;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.SeekBar;
 
-import com.ruochuan.BubbleLayout;
 import com.ruochuan.bubbleview.BubbleImageView;
 
 public class MainActivity extends AppCompatActivity {
@@ -12,14 +11,14 @@ public class MainActivity extends AppCompatActivity {
     SeekBar triangleHeight;
     SeekBar triangleWidth;
     SeekBar offset;
-    BubbleLayout bubbleView;
+    BubbleImageView bubbleView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        bubbleView = (BubbleLayout) findViewById(R.id.bubble);
+        bubbleView = (BubbleImageView) findViewById(R.id.bubble);
 
         radius = (SeekBar) findViewById(R.id.radius);
         offset = (SeekBar) findViewById(R.id.offset);

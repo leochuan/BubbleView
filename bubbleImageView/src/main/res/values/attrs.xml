@@ -13,5 +13,6 @@
         </attr>
         <attr name="triangleWidth" format="dimension" />
         <attr name="triangleHeight" format="dimension" />
+        <attr name="centerArrow" format="boolean" />
     </declare-styleable>
 </resources>
