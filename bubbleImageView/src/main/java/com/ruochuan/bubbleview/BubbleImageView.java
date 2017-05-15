@@ -10,8 +10,6 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
@@ -39,11 +37,11 @@ public class BubbleImageView extends ImageView {
         this(context, null);
     }
 
-    public BubbleImageView(Context context, @Nullable AttributeSet attrs) {
+    public BubbleImageView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public BubbleImageView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public BubbleImageView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context, attrs);
     }
@@ -119,7 +117,7 @@ public class BubbleImageView extends ImageView {
     }
 
     @Override
-    public void setImageResource(@DrawableRes int resId) {
+    public void setImageResource(int resId) {
         Drawable drawable;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             drawable = getContext().getDrawable(resId);

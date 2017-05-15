@@ -13,9 +13,6 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.IntRange;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.Gravity;
 
@@ -136,7 +133,7 @@ public final class BubbleDrawable extends Drawable {
     }
 
     @Override
-    public void draw(@NonNull Canvas canvas) {
+    public void draw(Canvas canvas) {
         if (bitmap == null) {
             return;
         }
@@ -244,17 +241,17 @@ public final class BubbleDrawable extends Drawable {
     }
 
     @Override
-    public void setAlpha(@IntRange(from = 0, to = 255) int alpha) {
+    public void setAlpha(int alpha) {
         bitmapPaint.setAlpha(alpha);
     }
 
     @Override
-    public void setColorFilter(@Nullable ColorFilter colorFilter) {
+    public void setColorFilter(ColorFilter colorFilter) {
         bitmapPaint.setColorFilter(colorFilter);
     }
 
     @Override
-    public void inflate(@NonNull Resources r, @NonNull XmlPullParser parser, @NonNull AttributeSet attrs) throws XmlPullParserException, IOException {
+    public void inflate(Resources r, XmlPullParser parser, AttributeSet attrs) throws XmlPullParserException, IOException {
         super.inflate(r, parser, attrs);
     }
 

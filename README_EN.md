@@ -22,14 +22,16 @@ You can cutstomize all the attributes below.
 
 
 
-## Download
+### Download
 
 Add the dependency to your project build.gradle file:
 
 ```Java
-compile 'rouchuan.bubbleview:bubbleImageView:1.0.0'
+compile 'rouchuan.bubbleview:bubbleImageView:1.0.1'
 ```
 ### Usage
+
+![](images/custom.gif)
 
 You can simply use it in xml file:
 

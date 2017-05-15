@@ -10,6 +10,8 @@ Bubble-ImageView
 
 ### 自定义
 
+![](images/custom.gif)
+
 支持自定义以下几种属性
 
 | attrs          | values                | description        |
@@ -24,12 +26,12 @@ Bubble-ImageView
 
 
 
-## 安装
+### 安装
 
 在build.gradle 文件下加入以下代码:
 
 ```Java
-compile 'rouchuan.bubbleview:bubbleImageView:1.0.0'
+compile 'rouchuan.bubbleview:bubbleImageView:1.0.1'
 ```
 ### 使用
 

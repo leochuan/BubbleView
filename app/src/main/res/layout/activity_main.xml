@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#fff"
     android:orientation="vertical"
     tools:context="com.ruochuan.sample.MainActivity">
@@ -13,7 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
-        app:orientation="top"
         android:src="@drawable/masami" />
 
     <TextView
@@ -27,9 +25,9 @@
 
     <SeekBar
         android:id="@+id/width"
-        android:progressBackgroundTint="#333"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:progressBackgroundTint="#333" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -42,9 +40,9 @@
 
     <SeekBar
         android:id="@+id/offset"
-        android:progressBackgroundTint="#333"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:progressBackgroundTint="#333" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -57,9 +55,9 @@
 
     <SeekBar
         android:id="@+id/radius"
-        android:progressBackgroundTint="#333"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:progressBackgroundTint="#333" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -72,8 +70,8 @@
 
     <SeekBar
         android:id="@+id/height"
-        android:progressBackgroundTint="#333"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:progressBackgroundTint="#333" />
 
 </LinearLayout>
