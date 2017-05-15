@@ -1,39 +1,37 @@
 Bubble-ImageView
 ======================
-## [English](README_EN.md)
-
 ### ScaleType
 
-支持所有scaleType以及adjustViewBounds，与原生ImageView行为完全一致。
+Working exactly same as imageView.Feel free to use all the scale types and adjustViewBounds.
 
 ![Example](images/center_crop.jpg "working example")![Example](images/center_inside.jpg "working example")![Example](images/fit_xy.jpg "working example")![Example](images/fit_end.jpg "working example")
 
-### 自定义
+### Customize
 
-支持自定义以下几种属性
+You can cutstomize all the attributes below.
 
-| attrs          | values                | description        |
-| :------------- | --------------------- | ------------------ |
-| borderColor    | color                 | 边线颜色               |
-| offset         | dimension             | 箭头位置偏移量（从上到下，从左到右） |
-| borderWidth    | dimension             | 边线宽度               |
-| radius         | dimension             | 圆角半径               |
-| orientation    | left,right,top,bottom | 箭头朝向               |
-| triangleWidth  | dimension             | 箭头底边长              |
-| triangleHeight | dimension             | 箭头高度               |
+| attrs          | values                | description                              |
+| :------------- | --------------------- | ---------------------------------------- |
+| borderColor    | color                 | color of border line                     |
+| offset         | dimension             | offset of the arrow (top to bottom, left to right) |
+| borderWidth    | dimension             | width of border line                     |
+| radius         | dimension             | radius of corner                         |
+| orientation    | left,right,top,bottom | orientation of the arrow                 |
+| triangleWidth  | dimension             | width of the arrow                       |
+| triangleHeight | dimension             | height of the arrow                      |
 
 
 
-## 安装
+## Download
 
-在build.gradle 文件下加入以下代码:
+Add the dependency to your project build.gradle file:
 
 ```Java
 compile 'rouchuan.bubbleview:bubbleImageView:1.0.0'
 ```
-### 使用
+### Usage
 
-直接在 xml 文件中引用即可:
+You can simply use it in xml file:
 
 ```xml
 <com.ruochuan.bubbleview.BubbleImageView
@@ -45,10 +43,10 @@ compile 'rouchuan.bubbleview:bubbleImageView:1.0.0'
         app:orientation="top"/>
 ```
 
-### 接下来要做的事
+### Things need to be done
 
-1. Bubble-ViewGroup 
-2. 支持阴影
+1. Bubble-ViewGroup
+2. Support shadow effect
 
 ## License ##
 
