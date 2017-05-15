@@ -1,6 +1,24 @@
-Bubble-ImageView
+BubbleImageView and BubbleLayout
 ======================
 ## [English](README_EN.md)
+
+### 安装
+
+若要使用BubbleImageView请在build.gradle 文件下加入以下代码:
+
+```Java
+compile 'rouchuan.bubbleview:bubbleImageView:1.0.2'
+```
+
+使用BubbleLayout:
+
+```groovy
+compile 'rouchuan.bubbleview:bubblelayout:1.0.0'
+```
+
+这两个库均未引用任何第三方库，BubbleImageView最低支持api 9，BubbleLayout最低支持api 11。
+
+## BubbleImageView
 
 ### ScaleType
 
@@ -23,16 +41,10 @@ Bubble-ImageView
 | orientation    | left,right,top,bottom | 箭头朝向               |
 | triangleWidth  | dimension             | 箭头底边长              |
 | triangleHeight | dimension             | 箭头高度               |
+| centerArrow    | boolean               | 箭头居中（会使offset属性失效） |
 
 
 
-### 安装
-
-在build.gradle 文件下加入以下代码:
-
-```Java
-compile 'rouchuan.bubbleview:bubbleImageView:1.0.1'
-```
 ### 使用
 
 直接在 xml 文件中引用即可:
@@ -47,9 +59,41 @@ compile 'rouchuan.bubbleview:bubbleImageView:1.0.1'
         app:orientation="top"/>
 ```
 
-### 接下来要做的事
 
-1. Bubble-ViewGroup 
+
+## BubbleLayout
+
+作为ViewGroup使用，相比BubbleImageView，增加了以下两个属性
+
+| attrs        | values  | description |
+| ------------ | ------- | ----------- |
+| bgColor      | color   | 背景颜色        |
+| clipToRadius | boolean | 下面会说明       |
+
+
+
+### 使用
+
+子view统一放置在左上角，建议内嵌其他viewgroup实现复杂布局。
+
+```xml
+<com.ruochuan.bubblelayout.BubbleLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" 
+            android:text="This is a sample"/>
+</com.ruochuan.bubblelayout.BubbleLayout>
+```
+
+![](images/bubbleLayout.jpg)
+
+子view计算大小以及放置时默认排除radius的大小，如果想塞满整个view建议将clipToRadius设为true，然后给子view设置一个与bubblelayout相同圆角的backgroundDrawable。
+
+## 接下来要做的事
+
+1. ~~Bubble-ViewGroup~~
 2. 支持阴影
 
 ## License ##

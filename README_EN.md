@@ -1,5 +1,21 @@
-Bubble-ImageView
+BubbleImageView and BubbleLayout
 ======================
+### Download
+
+If you want to use BubbleImageView please add this code into your build.gradle:
+
+```groovy
+compile 'rouchuan.bubbleview:bubbleImageView:1.0.2'
+```
+
+If you want to use BubbleLayout:
+
+```groovy
+compile 'rouchuan.bubbleview:bubblelayout:1.0.0'
+```
+
+No other dependencies are used in both of these libraries.BubbleImageView supports api 9 and BubbleLayout supports api 11.
+
 ### ScaleType
 
 Working exactly same as imageView.Feel free to use all the scale types and adjustViewBounds.
@@ -19,16 +35,10 @@ You can cutstomize all the attributes below.
 | orientation    | left,right,top,bottom | orientation of the arrow                 |
 | triangleWidth  | dimension             | width of the arrow                       |
 | triangleHeight | dimension             | height of the arrow                      |
+| centerArrow    | boolean               | center the arrow (it will disable offset) |
 
 
 
-### Download
-
-Add the dependency to your project build.gradle file:
-
-```Java
-compile 'rouchuan.bubbleview:bubbleImageView:1.0.1'
-```
 ### Usage
 
 ![](images/custom.gif)
@@ -45,9 +55,41 @@ You can simply use it in xml file:
         app:orientation="top"/>
 ```
 
+
+
+## BubbleLayout
+
+Use as a ViewGroup.Comparing to BubbleImageView, it add these two properties
+
+| attrs        | values  | description      |
+| ------------ | ------- | ---------------- |
+| bgColor      | color   | background color |
+| clipToRadius | boolean | see below        |
+
+
+
+### Usage
+
+It will layout all the child on top and left. If you want implement more complex layouts , please use other view group as top child.
+
+```xml
+<com.ruochuan.bubblelayout.BubbleLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" 
+            android:text="This is a sample"/>
+</com.ruochuan.bubblelayout.BubbleLayout>
+```
+
+![](images/bubbleLayout.jpg)
+
+By default, It will exclude the size of radius when measuring and layouting, if you want fill the BubbleLayout, please set clipToRadius true and set the child view a background drawable which has the same radius with its parent.
+
 ### Things need to be done
 
-1. Bubble-ViewGroup
+1. ~~Bubble-ViewGroup~~
 2. Support shadow effect
 
 ## License ##
