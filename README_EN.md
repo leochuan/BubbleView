@@ -5,7 +5,7 @@ BubbleImageView and BubbleLayout
 If you want to use BubbleImageView please add this code into your build.gradle:
 
 ```groovy
-compile 'rouchuan.bubbleview:bubbleImageView:1.0.2'
+compile 'rouchuan.bubbleview:bubbleImageView:1.0.3'
 ```
 
 If you want to use BubbleLayout:

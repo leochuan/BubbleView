@@ -242,7 +242,7 @@ public class BubbleImageView extends ImageView {
         final int mPaddingLeft = getPaddingLeft();
         final int mPaddingTop = getPaddingTop();
 
-        if (mDrawMatrix == null && getPaddingTop() == 0 && getPaddingBottom() == 0) {
+        if (mDrawMatrix == null && getPaddingTop() == 0 && getPaddingLeft() == 0) {
             bubbleDrawable.draw(canvas);
         } else {
             final int saveCount = canvas.getSaveCount();

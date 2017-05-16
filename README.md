@@ -1,13 +1,14 @@
 BubbleImageView and BubbleLayout
 ======================
 ## [English](README_EN.md)
+## [实现原理](http://www.jianshu.com/p/b18c90fdfe0e)
 
 ### 安装
 
 若要使用BubbleImageView请在build.gradle 文件下加入以下代码:
 
 ```Java
-compile 'rouchuan.bubbleview:bubbleImageView:1.0.2'
+compile 'rouchuan.bubbleview:bubbleImageView:1.0.3'
 ```
 
 使用BubbleLayout:
@@ -95,6 +96,9 @@ compile 'rouchuan.bubbleview:bubblelayout:1.0.0'
 
 1. ~~Bubble-ViewGroup~~
 2. 支持阴影
+
+## flag
+听说穿女装写代码没有bug,如果能超1000star的话，示例图片换女装照😳（反正也到不了）
 
 ## License ##
 
