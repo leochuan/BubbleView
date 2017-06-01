@@ -97,9 +97,6 @@ compile 'rouchuan.bubbleview:bubblelayout:1.0.0'
 1. ~~Bubble-ViewGroup~~
 2. 支持阴影
 
-## flag
-听说穿女装写代码没有bug,如果能超1000star的话，示例图片换女装照😳（反正也到不了）
-
 ## License ##
 
     Copyright 2017 shenruochuan
