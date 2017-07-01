@@ -18,7 +18,7 @@ compile 'rouchuan.bubbleview:bubblelayout:1.1.0'
 
 No other dependencies are used in both of them.BubbleImageView supports api 9 and BubbleLayout supports api 11. 
 
-**Shadow effset only works perfect above api 11 (include)**
+**Shadow effset only works perfectly above api 11 (include)**
 
 ### ScaleType
 
@@ -91,7 +91,7 @@ It will layout all the child on top and left. If you want implement more complex
 
 By default, It will exclude the size of radius when measuring and layouting, if you want fill the BubbleLayout, please set clipToRadius true and set the child view a background drawable which has the same radius with its parent.
 
-### Things need to be done
+### Things to be done
 
 1. ~~Bubble-ViewGroup~~
 2. ~~Support shadow effect~~
