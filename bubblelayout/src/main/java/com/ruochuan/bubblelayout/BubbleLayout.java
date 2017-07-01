@@ -29,11 +29,13 @@ public class BubbleLayout extends ViewGroup {
     private int triangleHeight;
     private int triangleWidth;
     private int offset;
-    private Paint backgroundPaint, borderPaint;
+    private Paint backgroundPaint, borderPaint, shadowPaint;
     private Path path;
     private int radius;
     private int borderWidth;
     private float borderPaintSize;
+    private int shadowRadius;
+    private int shadowColor;
     private int orientation;
     private RectF leftTopRadiusRect, rightTopRadiusRect, leftBottomRadiusRect, rightBottomRadiusRect;
     private int backgroundColor;
@@ -75,6 +77,8 @@ public class BubbleLayout extends ViewGroup {
         orientation = typedArray.getInt(R.styleable.bubbleView_orientation, orientation);
         triangleWidth = (int) typedArray.getDimension(R.styleable.bubbleView_triangleWidth, triangleWidth);
         triangleHeight = (int) typedArray.getDimension(R.styleable.bubbleView_triangleHeight, triangleHeight);
+        shadowRadius = (int) typedArray.getDimension(R.styleable.bubbleView_shadowRadius, 0);
+        shadowColor = typedArray.getColor(R.styleable.bubbleView_shadowColor, 0xff8D8D8D);
         clipToRadius = typedArray.getBoolean(R.styleable.bubbleView_clipToRadius, clipToRadius);
         centerArrow = typedArray.getBoolean(R.styleable.bubbleView_centerArrow, centerArrow);
         typedArray.recycle();
@@ -83,13 +87,13 @@ public class BubbleLayout extends ViewGroup {
     private void init() {
         setWillNotDraw(false);
 
-        backgroundPaint = new Paint();
         path = new Path();
-        backgroundPaint.setAntiAlias(true);
 
-        borderPaint = new Paint();
+        backgroundPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        shadowPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        shadowPaint.setShadowLayer(radius, 0, radius / 3, shadowColor);
+        borderPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         borderPaint.setStyle(Paint.Style.STROKE);
-        borderPaint.setAntiAlias(true);
         borderPaint.setStrokeCap(Paint.Cap.ROUND);
 
         borderPaintSize = borderWidth / getResources().getDisplayMetrics().density;
@@ -102,6 +106,12 @@ public class BubbleLayout extends ViewGroup {
         rightBottomRadiusRect = new RectF();
         leftBottomRadiusRect = new RectF();
         rightTopRadiusRect = new RectF();
+
+        if (shadowRadius > 0) {
+            setLayerType(LAYER_TYPE_SOFTWARE, null);
+            setPadding(getPaddingLeft() + shadowRadius, getPaddingTop() + shadowRadius,
+                    getPaddingRight() + shadowRadius, getPaddingBottom() + shadowRadius);
+        }
     }
 
     @Override
@@ -293,6 +303,21 @@ public class BubbleLayout extends ViewGroup {
         update();
     }
 
+    public void setShadowRadius(int shadowRadius) {
+        this.shadowRadius = shadowRadius;
+        if (shadowRadius > 0 && getLayerType() != LAYER_TYPE_SOFTWARE) {
+            setLayerType(LAYER_TYPE_SOFTWARE, null);
+        }
+        setPadding(getPaddingLeft() + shadowRadius, getPaddingTop() + shadowRadius,
+                getPaddingRight() + shadowRadius, getPaddingBottom() + shadowRadius);
+        update();
+    }
+
+    public void setShadowColor(int shadowColor) {
+        this.shadowColor = shadowColor;
+        update();
+    }
+
     public void setBorderWidth(int borderWidth) {
         this.borderWidth = borderWidth;
         borderPaintSize = borderWidth / getResources().getDisplayMetrics().density;
@@ -336,6 +361,14 @@ public class BubbleLayout extends ViewGroup {
         return borderColor;
     }
 
+    public int getShadowRadius() {
+        return shadowRadius;
+    }
+
+    public int getShadowColor() {
+        return shadowColor;
+    }
+
     public boolean isClipToRadius() {
         return clipToRadius;
     }
@@ -369,6 +402,7 @@ public class BubbleLayout extends ViewGroup {
     protected void onDraw(Canvas canvas) {
         configureRadiusRect();
         setUpPath();
+        if (shadowRadius > 0) canvas.drawPath(path, shadowPaint);
         canvas.drawPath(path, backgroundPaint);
         if (borderWidth > 0) canvas.drawPath(path, borderPaint);
     }
@@ -468,19 +502,19 @@ public class BubbleLayout extends ViewGroup {
     }
 
     private float getBorderLeft() {
-        return borderPaintSize / 2f;
+        return borderPaintSize / 2f + shadowRadius;
     }
 
     private float getBorderRight() {
-        return getWidth() - borderPaintSize / 2f;
+        return getWidth() - borderPaintSize / 2f - shadowRadius;
     }
 
     private float getBorderTop() {
-        return borderPaintSize / 2f;
+        return borderPaintSize / 2f + shadowRadius;
     }
 
     private float getBorderBottom() {
-        return getHeight() - borderPaintSize / 2f;
+        return getHeight() - borderPaintSize / 2f - shadowRadius;
     }
 
     private void update() {

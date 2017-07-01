@@ -9,6 +9,7 @@
     tools:context="com.ruochuan.sample.MainActivity">
 
     <com.ruochuan.bubbleview.BubbleImageView
+        android:layout_marginTop="10dp"
         android:id="@+id/bubble"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -21,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="50dp"
-        android:text="三角宽度"
+        android:text="triangle width"
         android:textColor="#000"
         android:textSize="12sp" />
 
@@ -35,8 +36,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="20dp"
-        android:text="三角偏移距离"
+        android:layout_marginTop="10dp"
+        android:text="offset"
         android:textColor="#000"
         android:textSize="12sp" />
 
@@ -50,8 +51,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="20dp"
-        android:text="圆角大小"
+        android:layout_marginTop="10dp"
+        android:text="radius"
         android:textColor="#000"
         android:textSize="12sp" />
 
@@ -65,8 +66,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="20dp"
-        android:text="三角高度"
+        android:layout_marginTop="10dp"
+        android:text="triangle height"
         android:textColor="#000"
         android:textSize="12sp" />
 

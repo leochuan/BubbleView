@@ -1,10 +1,9 @@
 package com.ruochuan.sample;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.SeekBar;
 
-import com.ruochuan.bubblelayout.BubbleLayout;
 import com.ruochuan.bubbleview.BubbleImageView;
 
 public class MainActivity extends AppCompatActivity {

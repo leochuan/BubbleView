@@ -16,5 +16,7 @@
         <attr name="triangleHeight" format="dimension" />
         <attr name="clipToRadius" format="boolean" />
         <attr name="centerArrow" format="boolean" />
+        <attr name="shadowRadius" format="dimension" />
+        <attr name="shadowColor" format="color" />
     </declare-styleable>
 </resources>
