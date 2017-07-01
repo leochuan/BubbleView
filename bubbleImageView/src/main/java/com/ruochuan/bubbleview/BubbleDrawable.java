@@ -36,9 +36,12 @@ public final class BubbleDrawable extends Drawable {
     private int offset = 0;
     private final Paint bitmapPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final Paint borderPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private final Paint shadowPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private int radius;
     private int orientation;
     private float borderWidth;
+    private int shadowRadius;
+    private int shadowColor;
     private boolean centerArrow;
     private Bitmap bitmap;
 
@@ -63,6 +66,8 @@ public final class BubbleDrawable extends Drawable {
         bitmap = builder.bitmap;
         borderWidth = builder.borderWidth;
         centerArrow = builder.centerArrow;
+        shadowRadius = builder.shadowRadius;
+        shadowColor = builder.shadowColor;
 
         borderPaint.setStyle(Paint.Style.STROKE);
         borderPaint.setStrokeCap(Paint.Cap.ROUND);
@@ -142,6 +147,11 @@ public final class BubbleDrawable extends Drawable {
 
         updateDstRect();
         setUpPath();
+
+        if (shadowRadius > 0) {
+            shadowPaint.setShadowLayer(shadowRadius, 0, shadowRadius / 3, shadowColor);
+            canvas.drawPath(path, shadowPaint);
+        }
         canvas.drawPath(path, bitmapPaint);
         if (borderWidth > 0) {
             borderPaint.setStrokeWidth(borderWidth * scale);
@@ -222,6 +232,14 @@ public final class BubbleDrawable extends Drawable {
         this.centerArrow = centerArrow;
     }
 
+    /* Package */ void setShadowRadius(int shadowRadius) {
+        this.shadowRadius = shadowRadius;
+    }
+
+    /* Package */ void setShadowColor(int shadowColor) {
+        this.shadowColor = shadowColor;
+    }
+
     public int getBorderColor() {
         return borderPaint.getColor();
     }
@@ -248,6 +266,14 @@ public final class BubbleDrawable extends Drawable {
 
     public boolean isCenterArrow() {
         return centerArrow;
+    }
+
+    public int getShadowRadius() {
+        return shadowRadius;
+    }
+
+    public int getShadowColor() {
+        return shadowColor;
     }
 
     @Override
@@ -387,9 +413,12 @@ public final class BubbleDrawable extends Drawable {
         private int radius;
         private int orientation;
         private int borderColor;
+        private int shadowRadius;
+        private int shadowColor;
         private float borderWidth;
         private Bitmap bitmap;
         private boolean centerArrow;
+
 
         public Builder setTriangleHeight(int triangleHeight) {
             this.triangleHeight = triangleHeight;
@@ -433,6 +462,16 @@ public final class BubbleDrawable extends Drawable {
 
         public Builder setCenterArrow(boolean centerArrow) {
             this.centerArrow = centerArrow;
+            return this;
+        }
+
+        public Builder setShadowRadius(int shadowRadius) {
+            this.shadowRadius = shadowRadius;
+            return this;
+        }
+
+        public Builder setShadowColor(int shadowColor) {
+            this.shadowColor = shadowColor;
             return this;
         }
 

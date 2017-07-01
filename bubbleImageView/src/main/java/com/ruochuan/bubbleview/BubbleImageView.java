@@ -11,6 +11,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.ImageView;
 
 import static com.ruochuan.bubbleview.BubbleDrawable.LEFT;
@@ -27,6 +28,8 @@ public class BubbleImageView extends ImageView {
     private int radius;
     private int orientation;
     private float borderWidth;
+    private int shadowRadius;
+    private int shadowColor;
     private int borderColor;
     private boolean centerArrow;
     private BubbleDrawable bubbleDrawable;
@@ -65,6 +68,8 @@ public class BubbleImageView extends ImageView {
         borderColor = typedArray.getColor(R.styleable.bubbleView_borderColor, borderColor);
         borderWidth = typedArray.getDimension(R.styleable.bubbleView_borderWidth, 0);
         centerArrow = typedArray.getBoolean(R.styleable.bubbleView_centerArrow, centerArrow);
+        shadowRadius = (int) typedArray.getDimension(R.styleable.bubbleView_shadowRadius, 0);
+        shadowColor = typedArray.getColor(R.styleable.bubbleView_shadowColor, 0xff8D8D8D);
         if (borderWidth != 0) {
             borderWidth = borderWidth / getResources().getDisplayMetrics().density;
         }
@@ -72,6 +77,12 @@ public class BubbleImageView extends ImageView {
 
         preSetUp = false;
         setImageDrawable(bubbleDrawable);
+
+        if (shadowRadius != 0 && Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+            setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+            setPadding(getPaddingLeft() + shadowRadius, getPaddingTop() + shadowRadius,
+                    getPaddingRight() + shadowRadius, getPaddingBottom() + shadowRadius);
+        }
     }
 
     private Bitmap getBitmapFromDrawable(Drawable drawable) {
@@ -134,6 +145,25 @@ public class BubbleImageView extends ImageView {
         this.triangleWidth = triangleWidth;
         if (bubbleDrawable != null)
             bubbleDrawable.setTriangleWidth(triangleWidth);
+        invalidate();
+    }
+
+    public void setShadowRadius(int shadowRadius) {
+        this.shadowRadius = shadowRadius;
+        setPadding(getPaddingLeft() + shadowRadius, getPaddingTop() + shadowRadius,
+                getPaddingRight() + shadowRadius, getPaddingBottom() + shadowRadius);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB && getLayerType() != LAYER_TYPE_SOFTWARE) {
+            setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+        }
+        if (bubbleDrawable != null)
+            bubbleDrawable.setShadowRadius(shadowRadius);
+        invalidate();
+    }
+
+    public void setShadowColor(int shadowColor) {
+        this.shadowColor = shadowColor;
+        if (bubbleDrawable != null)
+            bubbleDrawable.setShadowColor(shadowColor);
         invalidate();
     }
 
@@ -212,6 +242,14 @@ public class BubbleImageView extends ImageView {
         return centerArrow;
     }
 
+    public int getShadowRadius() {
+        return shadowRadius;
+    }
+
+    public int getShadowColor() {
+        return shadowColor;
+    }
+
     private void setUp() {
         if (bitmap == null) bitmap = getBitmapFromDrawable(getDrawable());
         if (bitmap == null) return;
@@ -220,6 +258,8 @@ public class BubbleImageView extends ImageView {
                 .setOffset(offset)
                 .setOrientation(orientation)
                 .setRadius(radius)
+                .setShadowRadius(shadowRadius)
+                .setShadowColor(shadowColor)
                 .setBorderColor(borderColor)
                 .setBorderWidth(borderWidth)
                 .setTriangleWidth(triangleWidth)
