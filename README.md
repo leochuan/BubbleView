@@ -1,54 +1,53 @@
 BubbleImageView and BubbleLayout
 ======================
-## [English](README_EN.md)
-## [实现原理](http://www.jianshu.com/p/b18c90fdfe0e)
+**English** | [中文](README_ZH.md)
 
-### 安装
+### Download
 
-若要使用BubbleImageView请在build.gradle 文件下加入以下代码:
-
-```Java
-compile 'rouchuan.bubbleview:bubbleImageView:1.0.3'
-```
-
-使用BubbleLayout:
+If you want to use BubbleImageView please add this code into your build.gradle:
 
 ```groovy
-compile 'rouchuan.bubbleview:bubblelayout:1.0.0'
+compile 'rouchuan.bubbleview:bubbleImageView:1.1.0'
 ```
 
-这两个库均未引用任何第三方库，BubbleImageView最低支持api 9，BubbleLayout最低支持api 11。
+If you want to use BubbleLayout:
 
-## BubbleImageView
+```groovy
+compile 'rouchuan.bubbleview:bubblelayout:1.1.0'
+```
+
+No other dependencies are used in both of them.BubbleImageView supports api 9 and BubbleLayout supports api 11. 
+
+**Shadow effset only works perfect above api 11 (include)**
 
 ### ScaleType
 
-支持所有scaleType以及adjustViewBounds，与原生ImageView行为完全一致。
+Working exactly same as imageView.Feel free to use all the scale types and adjustViewBounds.
 
 ![Example](images/center_crop.jpg "working example")![Example](images/center_inside.jpg "working example")![Example](images/fit_xy.jpg "working example")![Example](images/fit_end.jpg "working example")
 
-### 自定义
+### Customize
+
+You can cutstomize all the attributes below.
+
+| attrs          | values                | description                              |
+| :------------- | --------------------- | ---------------------------------------- |
+| borderColor    | color                 | color of border line                     |
+| offset         | dimension             | offset of the arrow (top to bottom, left to right) |
+| borderWidth    | dimension             | width of border line                     |
+| radius         | dimension             | radius of corner                         |
+| orientation    | left,right,top,bottom | orientation of the arrow                 |
+| triangleWidth  | dimension             | width of the arrow                       |
+| triangleHeight | dimension             | height of the arrow                      |
+| centerArrow    | boolean               | center the arrow (it will disable offset) |
+| shadowRadius   | dimension             | radius of shadow                         |
+| shadowColor    | color                 | color of shadow (#8D8D8D by default)     |
+
+### Usage
 
 ![](images/custom.gif)
 
-支持自定义以下几种属性
-
-| attrs          | values                | description        |
-| :------------- | --------------------- | ------------------ |
-| borderColor    | color                 | 边线颜色               |
-| offset         | dimension             | 箭头位置偏移量（从上到下，从左到右） |
-| borderWidth    | dimension             | 边线宽度               |
-| radius         | dimension             | 圆角半径               |
-| orientation    | left,right,top,bottom | 箭头朝向               |
-| triangleWidth  | dimension             | 箭头底边长              |
-| triangleHeight | dimension             | 箭头高度               |
-| centerArrow    | boolean               | 箭头居中（会使offset属性失效） |
-
-
-
-### 使用
-
-直接在 xml 文件中引用即可:
+You can simply use it in xml file:
 
 ```xml
 <com.ruochuan.bubbleview.BubbleImageView
@@ -64,18 +63,18 @@ compile 'rouchuan.bubbleview:bubblelayout:1.0.0'
 
 ## BubbleLayout
 
-作为ViewGroup使用，相比BubbleImageView，增加了以下两个属性
+Use as a ViewGroup.Comparing to BubbleImageView, it add these two properties
 
-| attrs        | values  | description |
-| ------------ | ------- | ----------- |
-| bgColor      | color   | 背景颜色        |
-| clipToRadius | boolean | 下面会说明       |
+| attrs        | values  | description      |
+| ------------ | ------- | ---------------- |
+| bgColor      | color   | background color |
+| clipToRadius | boolean | see below        |
 
 
 
-### 使用
+### Usage
 
-子view统一放置在左上角，建议内嵌其他viewgroup实现复杂布局。
+It will layout all the child on top and left. If you want implement more complex layouts , please use other view group as top child.
 
 ```xml
 <com.ruochuan.bubblelayout.BubbleLayout
@@ -90,12 +89,13 @@ compile 'rouchuan.bubbleview:bubblelayout:1.0.0'
 
 ![](images/bubbleLayout.jpg)
 
-子view计算大小以及放置时默认排除radius的大小，如果想塞满整个view建议将clipToRadius设为true，然后给子view设置一个与bubblelayout相同圆角的backgroundDrawable。
+By default, It will exclude the size of radius when measuring and layouting, if you want fill the BubbleLayout, please set clipToRadius true and set the child view a background drawable which has the same radius with its parent.
 
-## 接下来要做的事
+### Things need to be done
 
 1. ~~Bubble-ViewGroup~~
-2. 支持阴影
+2. ~~Support shadow effect~~
+3. Arrow angle
 
 ## License ##
 
